@@ -1,0 +1,14 @@
+FROM ubuntu:16.04
+
+WORKDIR /root
+
+RUN apt-get update
+RUN apt-get install -y curl
+COPY versions.txt /tmp/versions.txt
+# Add keys to validate our repos
+RUN for i in $(cat /tmp/versions.txt); do /usr/bin/curl -sLO https://www.mongodb.org/static/pgp/server-$i.asc; /usr/bin/apt-key add server-$i.asc; done
+# 3.0 apt repo uses a key different from https://www.mongodb.org/static/pgp/server-3.0.asc, we need to import that one from keyserver.
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
+
+
+COPY mongodb.list /etc/apt/sources.list.d/mongo.list
