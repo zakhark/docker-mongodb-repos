@@ -1,0 +1,6 @@
+FROM centos:6
+
+WORKDIR /root
+
+COPY mongodb.repo /etc/yum.repos.d/mongodb.repo
+
