@@ -31,3 +31,15 @@ jobs:
       run: |
         echo Add other actions to build,
         echo test, and deploy your project.
+        
+    - name: Run uname
+      run: uname -a
+
+    - name: Run pwd
+      run: pwd
+
+    - name: Run uptime
+      run: uptime
+
+    - name: Run df 
+      run: df -h
