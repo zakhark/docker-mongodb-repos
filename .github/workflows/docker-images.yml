@@ -16,7 +16,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Pull down the feed
       run: curl -LO http://downloads.mongodb.org/full.json
-    - name: Generate repo files:
+    - name: Generate repo files
       run: python repos_from_feed_generator.py full.json .
     - name: Build the Docker image for yum
       run: docker build -t mongo-repo-yum:latest -f Dockerfile-yum . --tag my-image-name:$(date +%s)
